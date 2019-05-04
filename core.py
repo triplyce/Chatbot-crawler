@@ -4,7 +4,7 @@ import logging
 import multiprocessing
 import threading
 import time
-import Queue
+from queue import Queue
 
 import scrapy
 from scrapy.crawler import CrawlerProcess
@@ -62,7 +62,7 @@ def nada_pra_fazer(bot, update, args):
         bot.send_message(chat_id=update.message.chat_id, text=msg)
 
         # Creating a new process with the crawler and stating
-        p = Process(target=crawler, args=(args[0], bot, update.message.chat_id,))
+        p = multiprocessing.Process(target=crawler, args=(args[0], bot, update.message.chat_id,))
         p.start()
 
 
